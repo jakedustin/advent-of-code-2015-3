@@ -19,9 +19,12 @@ public class Solver {
         }
         int x = 0;
         int y = 0;
+
+        int roboX = 0;
+        int roboY = 0;
         intPairSet.add(new IntPair(x, y));
 
-        for (int i = 0; i < inputText.length(); ++i) {
+        for (int i = 0; i < inputText.length(); i += 2) {
             char c = inputText.charAt(i);
             switch (c) {
                 case ('^'):
@@ -40,6 +43,25 @@ public class Solver {
                     break;
             }
             intPairSet.add(new IntPair(x, y));
+
+            char d = inputText.charAt(i + 1);
+            switch (d) {
+                case ('^'):
+                    roboY++;
+                    break;
+                case ('v'):
+                    roboY--;
+                    break;
+                case ('>'):
+                    roboX++;
+                    break;
+                case ('<'):
+                    roboX--;
+                    break;
+                default:
+                    break;
+            }
+            intPairSet.add(new IntPair(roboX, roboY));
         }
 
         return intPairSet.size();
